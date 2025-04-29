@@ -1,4 +1,4 @@
-### Descripción del Proyecto
+### Descripción de la app
 
 Este proyecto es una aplicación web sencilla que permite a los usuarios subir archivos de texto con la extensión .txt. La funcionalidad principal incluye la validación de archivos para asegurar que solo se seleccionen archivos de texto, proporcionando retroalimentación inmediata al usuario si intenta seleccionar un archivo de otro tipo.
 
