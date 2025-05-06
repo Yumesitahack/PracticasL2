@@ -1,5 +1,7 @@
 import os
 from flask import Flask, request, render_template
+from PyPDF2 import PdfReader
+from docx import Document
 
 app = Flask(__name__)
 
@@ -11,13 +13,28 @@ if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 
+
 def count_file_contents(file_path):
-    with open(file_path, "r", encoding="utf-8") as f:
-        content = f.read()
-        lines = content.splitlines()
-        num_lines = len(lines)
-        num_words = len(content.split())
-        num_chars = len(content)
+    if file_path.endswith(".txt"):
+        with open(file_path, "r", encoding="utf-8") as f:
+            content = f.read()
+    elif file_path.endswith(".pdf"):
+        content = ""
+        reader = PdfReader(file_path)
+        for page in reader.pages:
+            content += page.extract_text()
+    elif file_path.endswith(".docx"):
+        content = ""
+        doc = Document(file_path)
+        for paragraph in doc.paragraphs:
+            content += paragraph.text + "\n"
+    else:
+        raise ValueError("Unsupported file format")
+
+    lines = content.splitlines()
+    num_lines = len(lines)
+    num_words = len(content.split())
+    num_chars = len(content)
     return content, num_lines, num_words, num_chars
 
 
