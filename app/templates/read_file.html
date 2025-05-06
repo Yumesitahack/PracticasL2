@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APLICACION WEB</title>
+    <title>Leer archivo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,6 +11,7 @@
             margin: 0;
             padding: 20px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -59,16 +60,12 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Sube Un Archivo</h1>
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" accept=".txt,.pdf,.doc,.docx" required>
+    <h2>{{ filename }}</h2>
 
-            <input type="submit" value="Subir para leer">
-        </form>
-        <footer>
-            <p>App creada por Yume</p>
-        </footer>
-    </div>
+    <pre>{{ content }}</pre>
+
+    <p>{{ num_lines }}</p>
+    <p>{{ num_words }}</p>
+    <p>{{ num_chars }}</p>
 </body>
 </html>
